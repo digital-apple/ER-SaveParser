@@ -422,7 +422,9 @@ progress::after {
         <div>
             <input type="file" accept=".sl2,.co2">
             <select id="characters" style="display: none;"></select>
-            <button id="export" style="display: none;">Export as JSON</button>
+            <button id="export" style="display: none;">Export as JSON (full)</button>
+            <button id="export-brief" style="display: none;">Export as JSON (build only)</button>
+            <button id="export-appearance" style="display: none;">Export as JSON (appearance only)</button>
         </div>
 
         <div id="character" class="hide">
@@ -830,6 +832,41 @@ progress::after {
                     storage: character.storage,
                     customization: character.customization,
                     flags: character.internal.flags,
+                    version: character.version,
+                }, null, 2);
+
+                document.querySelector("#jsonExport").style.display = 'block';
+            }
+
+            function exportCharacterBrief() {
+                let slot = parseInt(document.querySelector('#characters').value);
+
+                if(slot < 0 || slot > 10)
+                    return;
+
+                let character = savedata.characters[slot];
+
+                document.querySelector("#jsonExport textarea").value = JSON.stringify({
+                    name: character.name,
+                    stats: character.stats,
+                    equipped: character.equipped,
+                    version: character.version,
+                }, null, 2);
+
+                document.querySelector("#jsonExport").style.display = 'block';
+            }
+
+            function exportCharacterAppearance() {
+                let slot = parseInt(document.querySelector('#characters').value);
+
+                if(slot < 0 || slot > 10)
+                    return;
+
+                let character = savedata.characters[slot];
+
+                document.querySelector("#jsonExport textarea").value = JSON.stringify({
+                    name: character.name,
+                    customization: character.customization,
                     version: character.version,
                 }, null, 2);
 
@@ -1282,6 +1319,8 @@ progress::after {
             document.querySelector('input').addEventListener('change', showFile);
             document.querySelector('#characters').addEventListener('change', renderCharacter);
             document.querySelector('#export').addEventListener('click', exportCharacter);
+            document.querySelector('#export-brief').addEventListener('click', exportCharacterBrief);
+            document.querySelector('#export-appearance').addEventListener('click', exportCharacterAppearance);
             document.querySelector('#jsonExport').addEventListener('click', hidePopup);
         </script>
     </body>
