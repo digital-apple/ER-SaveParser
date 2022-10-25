@@ -259,7 +259,9 @@ class CharacterData {
 
         reader.seek(0x8, true); // Skip
         this.internal.customization.BaseStructure = reader.readUint8();
-        reader.seek(0xB, true); // Skip
+        reader.seek(0x3, true)
+        this.internal.customization.AlterFaceAndHair.Hair.Hair = reader.readUint8();
+        reader.seek(0x7, true); // Skip
         this.internal.customization.AlterFaceAndHair.Eyebrows.Brow = reader.readUint8();
         reader.seek(0x3, true); // Skip
         this.internal.customization.AlterFaceAndHair.FacialHair.Beard = reader.readUint8();
