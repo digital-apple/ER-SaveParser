@@ -17,6 +17,8 @@ class SaveData {
                 this.characters[i] = new CharacterData(reader);
             }
         }
+
+        console.log(this.characters);
     }
 
     getSlotData(data, slot) {
@@ -437,8 +439,7 @@ class CharacterData {
 
             let checkBytes = reader.readUint32(false);
 
-            console.log("Flags Offset: '%s'\nFlag ID: '%s'\nCategory: '%s'\nSub ID: '%s'\nCheck Mask: '%s'\nShifted Offset: '%s'", flagsOffset, category, subId, checkMask, shiftedOffset);
-            console.log("Offset: " + offset);
+            console.log("Flags Offset: '%s'\nFlag ID: '%s'\nCategory: '%s'\nSub ID: '%s'\nCheck Mask: '%s'\nShifted Offset: '%s'\nOffset: %s\nCheck Bytes: '%s'\nState: '%d'", flagsOffset, category, subId, checkMask, shiftedOffset, offset, checkBytes, (checkBytes & checkMask));
 
             return (checkBytes & checkMask) != 0;
         }
