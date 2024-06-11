@@ -53,6 +53,9 @@ class CharacterData {
         Object.defineProperty(this, 'internal', { enumerable: false });
         //Character Info
         this.internal.health = reader.readInt32();
+
+        console.log("Health: %d | %s", this.internal.health, reader.offset.toString(16));
+
         this.internal.baseMaxHealth = reader.readInt32();
         this.internal.maxHealth = reader.readInt32();
         this.internal.mana = reader.readInt32();
