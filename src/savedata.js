@@ -45,6 +45,8 @@ class CharacterData {
 
         let start = reader.offset;
 
+        console.log("Starting Lookup at offset: '%s'", start.toString(16));
+
         for(let i=0; i<0x1400; i++) // Lookup Table
             reader.parseLookupEntry();
 
