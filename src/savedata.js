@@ -43,8 +43,12 @@ class CharacterData {
         if(this.version > 0x51) // Newer versions have an extra 16 bytes of padding
             reader.seek(0x10, true);
 
+        let start = reader.offset;
+
         for(let i=0; i<0x1400; i++) // Lookup Table
             reader.parseLookupEntry();
+
+        console.log("Lookup Length: %s", (reader.offset - start).toString(16));
 
         reader.seek(0x8, true);
 
