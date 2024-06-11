@@ -96,6 +96,8 @@ class DataReader {
     }
 
     parseLookupEntry() {
+        let start = this.offset;
+
         let ret = { };
         let bytes = this.read(0x8, false);
         if((bytes[3] == 0xC0 || bytes[3] == 0x80 || bytes[3] == 0x90)) {
@@ -122,6 +124,7 @@ class DataReader {
         } else {
             this.missedLookup.push(buf2hex(this.read(0x8).buffer));
         }
+        console.log("Lookup size: '%s'", (this.offset - start).toString(16));
     }
 
     readLookupEntry() {
