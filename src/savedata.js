@@ -437,7 +437,8 @@ class CharacterData {
 
             let checkBytes = reader.readUint32(false);
 
-            console.log("Flags Offset: '%s'\nFlag ID: '%s'\nCategory: '%s'\nSub ID: '%s'\nCheck Mask: '%s'\nShifted Offset: '%s'\nOffset: '%s'", flagsOffset, category, subId, checkMask, shiftedOffset, offset);
+            console.log("Flags Offset: '%s'\nFlag ID: '%s'\nCategory: '%s'\nSub ID: '%s'\nCheck Mask: '%s'\nShifted Offset: '%s'", flagsOffset, category, subId, checkMask, shiftedOffset);
+            console.log("Offset: " + offset);
 
             return (checkBytes & checkMask) != 0;
         }
